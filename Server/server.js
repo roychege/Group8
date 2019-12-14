@@ -24,6 +24,7 @@ var userdata = {
     "TimeZone": ""
 };
 app.get('/', function (req, res) {
+    console.log("Requested");
     db.insertOne(userdata)
         .then(function (result) { return console.log(result.insertedId); })["catch"](function (err) { return console.error(err); });
 });
@@ -33,7 +34,7 @@ app.get('/update', function (req, res) {
 app.get('/joinSlot', function (req, res) {
 });
 //Have a click based system or add new database
-app.get('/');
+app.get('/joinSession');
 app.listen(port, function () {
     console.log("listening on *: 3000");
 });

@@ -25,6 +25,7 @@ var userdata = {
     "TimeZone": "",
 };
 app.get('/', function(req, res){
+	console.log("Requested")
     db.insertOne(userdata)
         .then(result => console.log(result.insertedId))
         .catch(err => console.error(err))

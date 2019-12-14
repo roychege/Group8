@@ -2,6 +2,7 @@ package com.example.prototypeone;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -13,8 +14,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.IOException;
 
+public class MainActivity extends AppCompatActivity {
+    HttpRequest net = new HttpRequest();
+    //To run server go into server files and write node server.js.
+    //The URL for the server will be localhost:3000 or 127.0.0.1:3000
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
 
     @Override
@@ -57,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
     public void account_creation(View view)
     {
         Intent i = new Intent(getApplicationContext(),account_creation.class);
+        try{
+            net.GET("http://192.168.56.1:3000"); //127.0.0.1:3000
+        }catch(IOException ex){
+            System.out.println(ex);
+        }
         startActivity(i);
     }
 }
